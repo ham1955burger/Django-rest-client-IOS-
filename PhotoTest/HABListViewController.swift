@@ -13,6 +13,7 @@ import SwiftyJSON
 class HABListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
     
     var list: [JSON]?
     
@@ -30,6 +31,18 @@ class HABListViewController: UIViewController {
                     let json = JSON(data)
                     self.list = json.arrayValue
                     print(self.list)
+                    
+                    //server에서 뿌려주는게 맞는거 같음
+                    var totalPrice: Int = 0
+                    for info in self.list! {
+                        if info["state"].stringValue == "receive" {
+                            totalPrice += info["price"].intValue
+                        } else if info["state"].stringValue == "pay" {
+                            totalPrice -= info["price"].intValue
+                        }
+                    }
+                    
+                    self.totalLabel.text = "total : \(totalPrice)원"
                     self.tableView.reloadData()
                     
                 case .Failure(let error):
