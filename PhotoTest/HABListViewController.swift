@@ -59,6 +59,17 @@ extension HABListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.fillCell(self.list![indexPath.row])
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let info = self.list![indexPath.row]
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let detailHABViewController: DetailHABViewController = storyboard.instantiateViewControllerWithIdentifier("detailHABViewController") as! DetailHABViewController
+        detailHABViewController.viewType = .Edit
+        detailHABViewController.info = info
+        
+        self.presentViewController(detailHABViewController, animated: true, completion: nil)
+    }
 }
 
 class HABTableViewCell: UITableViewCell {

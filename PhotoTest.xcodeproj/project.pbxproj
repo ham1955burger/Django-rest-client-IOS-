@@ -18,7 +18,7 @@
 		CE87D4E81D5DB6620011A324 /* HABListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87D4E71D5DB6620011A324 /* HABListViewController.swift */; };
 		CE87D4EA1D5DB66C0011A324 /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87D4E91D5DB66C0011A324 /* PhotoListViewController.swift */; };
 		CEEB74E21D5DC7610017B2F7 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB74E11D5DC7610017B2F7 /* extension.swift */; };
-		CEEB74E41D5DCF2E0017B2F7 /* AddHABViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB74E31D5DCF2E0017B2F7 /* AddHABViewController.swift */; };
+		CEEB74E41D5DCF2E0017B2F7 /* DetailHABViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB74E31D5DCF2E0017B2F7 /* DetailHABViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +59,7 @@
 		CE87D4E91D5DB66C0011A324 /* PhotoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoListViewController.swift; sourceTree = "<group>"; };
 		CEEB74DD1D5DBECB0017B2F7 /* PhotoTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		CEEB74E11D5DC7610017B2F7 /* extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
-		CEEB74E31D5DCF2E0017B2F7 /* AddHABViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHABViewController.swift; sourceTree = "<group>"; };
+		CEEB74E31D5DCF2E0017B2F7 /* DetailHABViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailHABViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,13 +125,13 @@
 				CE0F034A1D5DA889006F9AB3 /* MainViewController.swift */,
 				CE0F034C1D5DA889006F9AB3 /* Main.storyboard */,
 				CE87D4E71D5DB6620011A324 /* HABListViewController.swift */,
+				CEEB74E31D5DCF2E0017B2F7 /* DetailHABViewController.swift */,
 				CE87D4E91D5DB66C0011A324 /* PhotoListViewController.swift */,
 				CE0F034F1D5DA889006F9AB3 /* Assets.xcassets */,
 				CE0F03511D5DA889006F9AB3 /* LaunchScreen.storyboard */,
 				CE0F03541D5DA889006F9AB3 /* Info.plist */,
 				CEEB74DD1D5DBECB0017B2F7 /* PhotoTest-Bridging-Header.h */,
 				CEEB74E11D5DC7610017B2F7 /* extension.swift */,
-				CEEB74E31D5DCF2E0017B2F7 /* AddHABViewController.swift */,
 			);
 			path = PhotoTest;
 			sourceTree = "<group>";
@@ -349,7 +349,7 @@
 				CE87D4EA1D5DB66C0011A324 /* PhotoListViewController.swift in Sources */,
 				CE0F034B1D5DA889006F9AB3 /* MainViewController.swift in Sources */,
 				CEEB74E21D5DC7610017B2F7 /* extension.swift in Sources */,
-				CEEB74E41D5DCF2E0017B2F7 /* AddHABViewController.swift in Sources */,
+				CEEB74E41D5DCF2E0017B2F7 /* DetailHABViewController.swift in Sources */,
 				CE0F03491D5DA889006F9AB3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
