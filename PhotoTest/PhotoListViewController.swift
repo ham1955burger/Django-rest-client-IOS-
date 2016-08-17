@@ -39,12 +39,21 @@ class PhotoListViewController: UIViewController {
 
 extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        guard self.list != nil else {
+            return 0
+        }
+        
+        if self.list!.count == 0 {
+            self.collectionView.hidden = true
+            self.emptyLabel.hidden = false
+            return 0
+        }
+        return self.list!.count
     }
-    
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+        cell.fill(self.list![indexPath.row])
         return cell
     }
 }
@@ -56,6 +65,13 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bodyLabel: UILabel!
     
     func fill(info: JSON) {
-    
+//        self.imageView.image = info["image_thumb_file"]
+        
+        Alamofire.request(.GET, "http://127.0.0.1:8000/\(info["image_thumb_file"])").response { (request, response, data, error) in
+            let image = UIImage(data: data!, scale: 1)
+            self.imageView.image = UIImage(data: data!)
+        }
+        
+        self.bodyLabel.text = info["description"].stringValue
     }
 }

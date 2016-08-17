@@ -409,7 +409,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="197" height="263"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ut-6M-NHP">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ut-6M-NHP">
                                                     <rect key="frame" x="0.0" y="0.0" width="197" height="142"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pg-1w-R0h">
@@ -496,6 +496,9 @@
                                 <state key="normal" title="사진 가져오기">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionImageButton:" destination="F5X-Ui-pbZ" eventType="touchUpInside" id="euc-YZ-6W9"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaN-d9-Xvq">
                                 <rect key="frame" x="64" y="347" width="30" height="21"/>
@@ -515,16 +518,26 @@
                                     <action selector="actionCloseButton:" destination="F5X-Ui-pbZ" eventType="touchUpInside" id="aRL-cT-UER"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edq-f4-hmg">
+                                <rect key="frame" x="170" y="427" width="74" height="30"/>
+                                <state key="normal" title="등록"/>
+                                <connections>
+                                    <action selector="actionDoneButton:" destination="F5X-Ui-pbZ" eventType="touchUpInside" id="P18-ln-T8F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="edq-f4-hmg" firstAttribute="top" secondItem="dCY-Hn-i7r" secondAttribute="bottom" constant="55" id="2g1-8m-2ta"/>
                             <constraint firstItem="CTG-uh-c1d" firstAttribute="top" secondItem="AAB-5u-LcO" secondAttribute="bottom" id="Gqb-SO-xeX"/>
                             <constraint firstItem="Smi-5W-nu5" firstAttribute="centerX" secondItem="Q5V-SH-tr7" secondAttribute="centerX" id="IMo-LB-orT"/>
                             <constraint firstItem="Smi-5W-nu5" firstAttribute="top" secondItem="AAB-5u-LcO" secondAttribute="bottom" constant="67" id="QxC-mu-JH9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="edq-f4-hmg" secondAttribute="trailing" constant="150" id="S1e-mZ-TtQ"/>
                             <constraint firstItem="aaN-d9-Xvq" firstAttribute="centerY" secondItem="dCY-Hn-i7r" secondAttribute="centerY" id="Td9-bP-SG2"/>
                             <constraint firstItem="dCY-Hn-i7r" firstAttribute="top" secondItem="Smi-5W-nu5" secondAttribute="bottom" constant="65" id="cb3-Tn-llq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dCY-Hn-i7r" secondAttribute="trailing" constant="30" id="f3I-9M-C9e"/>
                             <constraint firstItem="aaN-d9-Xvq" firstAttribute="leading" secondItem="Q5V-SH-tr7" secondAttribute="leadingMargin" constant="44" id="mJz-6J-pN0"/>
+                            <constraint firstItem="edq-f4-hmg" firstAttribute="leading" secondItem="Q5V-SH-tr7" secondAttribute="leadingMargin" constant="150" id="mfx-1K-Vjp"/>
                             <constraint firstItem="dCY-Hn-i7r" firstAttribute="leading" secondItem="aaN-d9-Xvq" secondAttribute="trailing" constant="10" id="nEM-bE-rvB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CTG-uh-c1d" secondAttribute="trailing" id="nqp-qs-R1u"/>
                         </constraints>
@@ -532,6 +545,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bodyTextField" destination="dCY-Hn-i7r" id="4uu-LL-rlF"/>
+                        <outlet property="doneButton" destination="edq-f4-hmg" id="7oR-eL-oH9"/>
                         <outlet property="imageButton" destination="Smi-5W-nu5" id="f3L-n8-uTB"/>
                     </connections>
                 </viewController>
