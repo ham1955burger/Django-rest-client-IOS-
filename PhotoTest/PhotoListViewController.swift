@@ -56,6 +56,22 @@ extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.fill(self.list![indexPath.row])
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(UIScreen.mainScreen().bounds.width / 2 - 1.25, self.collectionView.frame.height / 3)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewlayout: UICollectionViewLayout, insetForSectionAtIndex section: NSInteger) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(0, 0, 0, 0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewlayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
+        return 2.0;
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
+        return 2.0;
+    }
 }
 
 
@@ -69,7 +85,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         Alamofire.request(.GET, "http://127.0.0.1:8000/\(info["image_thumb_file"])").response { (request, response, data, error) in
             let image = UIImage(data: data!, scale: 1)
-            self.imageView.image = UIImage(data: data!)
+            self.imageView.image = UIImage(data: data!, scale: 0.8)
         }
         
         self.bodyLabel.text = info["description"].stringValue

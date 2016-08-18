@@ -54,6 +54,7 @@ class PhotoDetailViewController: UIViewController {
     
     @IBAction func actionDoneButton(sender: AnyObject) {
         self.uploadWithAlamofire()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
