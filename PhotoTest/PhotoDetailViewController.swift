@@ -161,36 +161,52 @@ extension PhotoDetailViewController {
         } else {
             //edit
             // Begin upload
-            Alamofire.upload(.PUT, url,
-                             multipartFormData: { multipartFormData in
-                                
-                                // import image to request
-                                if let imageData = UIImageJPEGRepresentation(self.imageButton.currentBackgroundImage!, 0.8) {
-                                    multipartFormData.appendBodyPart(data: imageData, name: "image_file", fileName: "myImage.png", mimeType: "image/png")
-                                }
-                                
-                                // import parameters
-                                for (key, value) in parameters {
-                                    multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key)
-                                }
-                }, // you can customise Threshold if you wish. This is the alamofire's default value
-                encodingMemoryThreshold: Manager.MultipartFormDataEncodingMemoryThreshold,
-                encodingCompletion: { encodingResult in
-                    switch encodingResult {
-                    case .Success(let upload, _, _):
-                        //                    upload.responseJSON { response in
-                        //                        debugPrint(response)
-                        //                    }
-                        self.oneButtonAlert(String("수정 완료!!")){ (UIAlertAction) in
-                            self.dismissViewControllerAnimated(true, completion: nil)
+            
+            if self.image != self.imageButton.currentBackgroundImage {
+                //changed image
+                Alamofire.upload(.PUT, url,
+                                 multipartFormData: { multipartFormData in
+                                    
+                                    // import image to request
+                                    if let imageData = UIImageJPEGRepresentation(self.imageButton.currentBackgroundImage!, 0.8) {
+                                        multipartFormData.appendBodyPart(data: imageData, name: "image_file", fileName: "myImage.png", mimeType: "image/png")
+                                    }
+                                    
+                                    // import parameters
+                                    for (key, value) in parameters {
+                                        multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key)
+                                    }
+                    }, // you can customise Threshold if you wish. This is the alamofire's default value
+                    encodingMemoryThreshold: Manager.MultipartFormDataEncodingMemoryThreshold,
+                    encodingCompletion: { encodingResult in
+                        switch encodingResult {
+                        case .Success(let upload, _, _):
+                            //                    upload.responseJSON { response in
+                            //                        debugPrint(response)
+                            //                    }
+                            self.oneButtonAlert(String("수정 완료!!")){ (UIAlertAction) in
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }
+                            
+                        case .Failure(let encodingError):
+                            print(encodingError)
                         }
-                        
-                    case .Failure(let encodingError):
-                        print(encodingError)
+                })
+            } else {
+                //not changed image
+                Alamofire.request(.PUT, url, parameters: parameters)
+                .validate()
+                .responseJSON { response in
+                    switch response.result {
+                        case .Success(let data):
+                            self.oneButtonAlert(String("수정 완료!!")){ (UIAlertAction) in
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }
+                        case .Failure(let error):
+                            print(error)
                     }
-            })
+                }
+            }
         }
-        
-        
     }
 }
