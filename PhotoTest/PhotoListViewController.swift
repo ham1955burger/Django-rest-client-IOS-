@@ -35,6 +35,16 @@ class PhotoListViewController: UIViewController {
                 }
         }
     }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        switch segue.identifier! {
+//        case "photo_list_to_detail":
+//            let vc = segue.destinationViewController as! PhotoDetailViewController
+//            vc.viewType = .Add
+//        default:
+//            return
+//        }
+//    }
 }
 
 extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -72,22 +82,30 @@ extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
         return 2.0;
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let info = self.list![indexPath.row]
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let photoDetailViewController: PhotoDetailViewController = storyboard.instantiateViewControllerWithIdentifier("photoDetailViewController") as! PhotoDetailViewController
+        photoDetailViewController.viewType = .Edit
+        photoDetailViewController.info = info
+        
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
+        photoDetailViewController.image = cell.imageView.image
+        
+        self.presentViewController(photoDetailViewController, animated: true, completion: nil)
+    }
 }
-
 
 
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var bodyLabel: UILabel!
     
     func fill(info: JSON) {
-//        self.imageView.image = info["image_thumb_file"]
-        
-        Alamofire.request(.GET, "http://127.0.0.1:8000/\(info["image_thumb_file"])").response { (request, response, data, error) in
-            let image = UIImage(data: data!, scale: 1)
-            self.imageView.image = UIImage(data: data!, scale: 0.8)
+        Alamofire.request(.GET, "http://127.0.0.1:8000\(info["image_thumb_file"])").response { (request, response, data, error) in
+            self.imageView.image = UIImage(data: data!, scale: 1)
+            self.imageView.frame = self.bounds
         }
-        
-        self.bodyLabel.text = info["description"].stringValue
     }
 }

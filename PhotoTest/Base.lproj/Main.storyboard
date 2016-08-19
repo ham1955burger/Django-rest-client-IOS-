@@ -202,7 +202,7 @@
                     <navigationItem key="navigationItem" id="aTv-mN-MAo">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lH2-QN-9GG">
                             <connections>
-                                <segue destination="rfv-GE-LVS" kind="presentation" id="oS1-DA-R4j"/>
+                                <segue destination="rfv-GE-LVS" kind="presentation" identifier="hab_list_to_detail" id="oS1-DA-R4j"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -393,37 +393,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PSK-2H-Fak">
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PSK-2H-Fak">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2WN-tH-lMM">
-                                    <size key="itemSize" width="197" height="263"/>
+                                    <size key="itemSize" width="217" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="kjp-Qo-Fs9" customClass="CollectionViewCell" customModule="PhotoTest" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="197" height="263"/>
+                                        <rect key="frame" x="99" y="0.0" width="217" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="197" height="263"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="217" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ut-6M-NHP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="142"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ut-6M-NHP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="217" height="200"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="200" id="ouH-Or-2CG"/>
+                                                        <constraint firstAttribute="width" constant="200" id="xTw-uP-hGR"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="xTw-uP-hGR"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pg-1w-R0h">
-                                                    <rect key="frame" x="8" y="184" width="55" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="8ut-6M-NHP" firstAttribute="top" secondItem="kjp-Qo-Fs9" secondAttribute="topMargin" id="OHn-0n-yPf"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="8ut-6M-NHP" secondAttribute="trailing" id="bK1-I4-vUK"/>
+                                            <constraint firstItem="8ut-6M-NHP" firstAttribute="leading" secondItem="kjp-Qo-Fs9" secondAttribute="leadingMargin" id="hvG-78-nD6"/>
+                                        </constraints>
+                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                         <connections>
-                                            <outlet property="bodyLabel" destination="1pg-1w-R0h" id="6QA-bb-4gC"/>
                                             <outlet property="imageView" destination="8ut-6M-NHP" id="d6C-qV-2rc"/>
                                         </connections>
                                     </collectionViewCell>
@@ -459,7 +467,7 @@
                     <navigationItem key="navigationItem" id="lra-tc-cvc">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0zf-98-xgL">
                             <connections>
-                                <segue destination="F5X-Ui-pbZ" kind="presentation" id="iwt-C7-f6U"/>
+                                <segue destination="F5X-Ui-pbZ" kind="presentation" identifier="photo_list_to_detail" id="iwt-C7-f6U"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -477,7 +485,7 @@
         <!--Photo Detail View Controller-->
         <scene sceneID="Yqx-VV-4WJ">
             <objects>
-                <viewController id="F5X-Ui-pbZ" customClass="PhotoDetailViewController" customModule="PhotoTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photoDetailViewController" id="F5X-Ui-pbZ" customClass="PhotoDetailViewController" customModule="PhotoTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AAB-5u-LcO"/>
                         <viewControllerLayoutGuide type="bottom" id="cRO-p1-hpo"/>
@@ -525,26 +533,47 @@
                                     <action selector="actionDoneButton:" destination="F5X-Ui-pbZ" eventType="touchUpInside" id="P18-ln-T8F"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smO-0r-RWy">
+                                <rect key="frame" x="170" y="489" width="74" height="30"/>
+                                <state key="normal" title="삭제!!!!!!!"/>
+                                <connections>
+                                    <action selector="actionDeleteButton:" destination="F5X-Ui-pbZ" eventType="touchUpInside" id="mfW-8d-0if"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2012-12-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMt-ui-IyK">
+                                <rect key="frame" x="163" y="287" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="edq-f4-hmg" firstAttribute="top" secondItem="dCY-Hn-i7r" secondAttribute="bottom" constant="55" id="2g1-8m-2ta"/>
+                            <constraint firstItem="lMt-ui-IyK" firstAttribute="top" secondItem="Smi-5W-nu5" secondAttribute="bottom" constant="10" id="5RV-rb-Whi"/>
+                            <constraint firstItem="smO-0r-RWy" firstAttribute="height" secondItem="edq-f4-hmg" secondAttribute="height" id="Afk-nn-gwu"/>
                             <constraint firstItem="CTG-uh-c1d" firstAttribute="top" secondItem="AAB-5u-LcO" secondAttribute="bottom" id="Gqb-SO-xeX"/>
                             <constraint firstItem="Smi-5W-nu5" firstAttribute="centerX" secondItem="Q5V-SH-tr7" secondAttribute="centerX" id="IMo-LB-orT"/>
                             <constraint firstItem="Smi-5W-nu5" firstAttribute="top" secondItem="AAB-5u-LcO" secondAttribute="bottom" constant="67" id="QxC-mu-JH9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="edq-f4-hmg" secondAttribute="trailing" constant="150" id="S1e-mZ-TtQ"/>
                             <constraint firstItem="aaN-d9-Xvq" firstAttribute="centerY" secondItem="dCY-Hn-i7r" secondAttribute="centerY" id="Td9-bP-SG2"/>
+                            <constraint firstItem="smO-0r-RWy" firstAttribute="top" secondItem="edq-f4-hmg" secondAttribute="bottom" constant="32" id="c2l-fb-MQC"/>
                             <constraint firstItem="dCY-Hn-i7r" firstAttribute="top" secondItem="Smi-5W-nu5" secondAttribute="bottom" constant="65" id="cb3-Tn-llq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dCY-Hn-i7r" secondAttribute="trailing" constant="30" id="f3I-9M-C9e"/>
+                            <constraint firstItem="lMt-ui-IyK" firstAttribute="centerX" secondItem="Smi-5W-nu5" secondAttribute="centerX" id="hun-xQ-zSa"/>
+                            <constraint firstItem="smO-0r-RWy" firstAttribute="trailing" secondItem="edq-f4-hmg" secondAttribute="trailing" id="iWW-eR-vH4"/>
                             <constraint firstItem="aaN-d9-Xvq" firstAttribute="leading" secondItem="Q5V-SH-tr7" secondAttribute="leadingMargin" constant="44" id="mJz-6J-pN0"/>
                             <constraint firstItem="edq-f4-hmg" firstAttribute="leading" secondItem="Q5V-SH-tr7" secondAttribute="leadingMargin" constant="150" id="mfx-1K-Vjp"/>
                             <constraint firstItem="dCY-Hn-i7r" firstAttribute="leading" secondItem="aaN-d9-Xvq" secondAttribute="trailing" constant="10" id="nEM-bE-rvB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CTG-uh-c1d" secondAttribute="trailing" id="nqp-qs-R1u"/>
+                            <constraint firstItem="smO-0r-RWy" firstAttribute="leading" secondItem="edq-f4-hmg" secondAttribute="leading" id="pId-wX-JLD"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bodyTextField" destination="dCY-Hn-i7r" id="4uu-LL-rlF"/>
+                        <outlet property="createdLabel" destination="lMt-ui-IyK" id="YP6-Fv-Yaw"/>
+                        <outlet property="deleteButton" destination="smO-0r-RWy" id="bkK-tg-I0D"/>
                         <outlet property="doneButton" destination="edq-f4-hmg" id="7oR-eL-oH9"/>
                         <outlet property="imageButton" destination="Smi-5W-nu5" id="f3L-n8-uTB"/>
                     </connections>

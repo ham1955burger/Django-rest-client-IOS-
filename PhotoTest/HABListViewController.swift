@@ -47,9 +47,19 @@ class HABListViewController: UIViewController {
                     
                 case .Failure(let error):
                     print(error)
-                }
+            }
         }
     }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        switch segue.identifier! {
+//        case "hab_list_to_detail":
+//            let vc = segue.destinationViewController as! DetailHABViewController
+//            vc.viewType = .Add
+//        default:
+//            return
+//        }
+//    }
 }
 
 extension HABListViewController: UITableViewDelegate, UITableViewDataSource {

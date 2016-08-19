@@ -27,12 +27,10 @@ class MainViewController: UIViewController {
         switch segue.identifier! {
             case "main_to_HAB_list":
                 segue.destinationViewController.navigationItem.title = "HAB"
-                print("aa")
             case "main_to_photo_list":
                 segue.destinationViewController.navigationItem.title = "Photo"
-                print("zz")
             default:
-                print("zz")
+                return
         }
     }
     
