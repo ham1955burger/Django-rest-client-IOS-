@@ -21,12 +21,12 @@ class HABListViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        Alamofire.request(.GET, "http://127.0.0.1:8000/list")
+    override func viewDidAppear(_ animated: Bool) {
+        Alamofire.request("http://127.0.0.1:8000/list/", method: .get, parameters: nil, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in
                 switch response.result {
-                case .Success(let data):
+                case .success(let data):
                     
                     let json = JSON(data)
                     self.list = json.arrayValue
@@ -45,7 +45,7 @@ class HABListViewController: UIViewController {
                     self.totalLabel.text = "total : \(totalPrice)원"
                     self.tableView.reloadData()
                     
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
             }
         }
@@ -63,35 +63,37 @@ class HABListViewController: UIViewController {
 }
 
 extension HABListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard self.list != nil else {
             return 0
         }
         
         if self.list!.count == 0 {
-            self.tableView.hidden = true
-            self.emptyLabel.hidden = false
+            self.tableView.isHidden = true
+            self.emptyLabel.isHidden = false
             return 0
         } else {
+            self.tableView.isHidden = false
+            self.emptyLabel.isHidden = true
             return self.list!.count
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tableViewCell") as! HABTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell") as! HABTableViewCell
         cell.fillCell(self.list![indexPath.row])
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let info = self.list![indexPath.row]
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let detailHABViewController: DetailHABViewController = storyboard.instantiateViewControllerWithIdentifier("detailHABViewController") as! DetailHABViewController
-        detailHABViewController.viewType = .Edit
+        let detailHABViewController: DetailHABViewController = storyboard.instantiateViewController(withIdentifier: "detailHABViewController") as! DetailHABViewController
+        detailHABViewController.viewType = .edit
         detailHABViewController.info = info
         
-        self.presentViewController(detailHABViewController, animated: true, completion: nil)
+        self.present(detailHABViewController, animated: true, completion: nil)
     }
 }
 
@@ -100,7 +102,7 @@ class HABTableViewCell: UITableViewCell {
     @IBOutlet weak var category_priceLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
     
-    func fillCell(info: JSON) {
+    func fillCell(_ info: JSON) {
         self.stateLabel.text = info["state"].stringValue.stateHABString()
         self.category_priceLabel.text = "\(info["category"]) / \(info["price"].stringValue)"
         self.memoLabel.text = info["memo"].stringValue

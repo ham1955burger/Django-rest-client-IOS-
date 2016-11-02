@@ -55,10 +55,10 @@ extension String {
 
 
 extension UIViewController {
-    func oneButtonAlert(message: String, handler: ((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController.init(title: "", message: message, preferredStyle: .Alert)
-        let confirmButton = UIAlertAction.init(title: "확인", style: .Default, handler: nil)
-        let confirmButtonWithAction = UIAlertAction.init(title: "확인", style: .Default, handler: handler)
+    func oneButtonAlert(_ message: String, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController.init(title: "", message: message, preferredStyle: .alert)
+        let confirmButton = UIAlertAction.init(title: "확인", style: .default, handler: nil)
+        let confirmButtonWithAction = UIAlertAction.init(title: "확인", style: .default, handler: handler)
         
         if handler != nil {
             alert.addAction(confirmButtonWithAction)
@@ -66,6 +66,6 @@ extension UIViewController {
             alert.addAction(confirmButton)
         }
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 }

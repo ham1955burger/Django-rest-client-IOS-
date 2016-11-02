@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-PhotoTestTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PhotoTestUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,7 +32,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5768E0968A1DDE185DFBC38C51ADF458</key>
+		<key>368D0491CDC7D987D64D5CA654BDC742</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,7 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DE40BF388A10762C31CF12AF78E03B1E</key>
+		<key>95B78F5346BEEF0DFF37F7B93226F035</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B55D2039D0411D56D7320519A31503F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1B8F3D85D67941D3F4F6C3F154A2ECD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

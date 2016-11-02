@@ -20,22 +20,22 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         
         switch segue.identifier! {
             case "main_to_HAB_list":
-                segue.destinationViewController.navigationItem.title = "HAB"
+                segue.destination.navigationItem.title = "HAB"
             case "main_to_photo_list":
-                segue.destinationViewController.navigationItem.title = "Photo"
+                segue.destination.navigationItem.title = "Photo"
             default:
                 return
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
 }
 

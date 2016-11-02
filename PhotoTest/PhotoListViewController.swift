@@ -18,19 +18,19 @@ class PhotoListViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        Alamofire.request(.GET, "http://127.0.0.1:8000/photo")
+    override func viewDidAppear(_ animated: Bool) {
+        Alamofire.request("http://127.0.0.1:8000/photo", method: .get, parameters: nil, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in
                 switch response.result {
-                case .Success(let data):
+                case .success(let data):
                     
                     let json = JSON(data)
                     self.list = json.arrayValue
                     print(self.list)
                     self.collectionView.reloadData()
                     
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
                 }
         }
@@ -48,53 +48,53 @@ class PhotoListViewController: UIViewController {
 }
 
 extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard self.list != nil else {
             return 0
         }
         
         if self.list!.count == 0 {
-            self.collectionView.hidden = true
-            self.emptyLabel.hidden = false
+            self.collectionView.isHidden = true
+            self.emptyLabel.isHidden = false
             return 0
         }
         return self.list!.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         cell.fill(self.list![indexPath.row])
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(UIScreen.mainScreen().bounds.width / 2 - 1.25, self.collectionView.frame.height / 3)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width / 2 - 1.25, height: self.collectionView.frame.height / 3)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewlayout: UICollectionViewLayout, insetForSectionAtIndex section: NSInteger) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewlayout: UICollectionViewLayout, insetForSectionAtIndex section: NSInteger) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewlayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewlayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
         return 2.0;
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
         return 2.0;
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let info = self.list![indexPath.row]
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let photoDetailViewController: PhotoDetailViewController = storyboard.instantiateViewControllerWithIdentifier("photoDetailViewController") as! PhotoDetailViewController
-        photoDetailViewController.viewType = .Edit
+        let photoDetailViewController: PhotoDetailViewController = storyboard.instantiateViewController(withIdentifier: "photoDetailViewController") as! PhotoDetailViewController
+        photoDetailViewController.viewType = .edit
         photoDetailViewController.info = info
         
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
         photoDetailViewController.image = cell.imageView.image
         
-        self.presentViewController(photoDetailViewController, animated: true, completion: nil)
+        self.present(photoDetailViewController, animated: true, completion: nil)
     }
 }
 
@@ -102,10 +102,11 @@ extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDat
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
-    func fill(info: JSON) {
-        Alamofire.request(.GET, "http://127.0.0.1:8000\(info["image_thumb_file"])").response { (request, response, data, error) in
-            self.imageView.image = UIImage(data: data!, scale: 1)
+    func fill(_ info: JSON) {
+        Alamofire.request("http://127.0.0.1:8000\(info["image_thumb_file"])").response { (response) in
+            self.imageView.image = UIImage(data: response.data!, scale: 1)
             self.imageView.frame = self.bounds
+
         }
     }
 }
